@@ -9,7 +9,7 @@ router.get('/', async (req, res) => {
     const projects = await Projects.getAllProjects()
     res.status(200).json(projects)
   } catch (error) {
-    res.status(500).json({ message: error })
+    res.status(500).json({ message: error.message })
   }
 })
 
@@ -18,7 +18,7 @@ router.post('/', validateProject, async (req, res) => {
     const newProject = await Projects.addProject(req.body)
     res.status(201).json(newProject)
   } catch (error) {
-    res.status(500).json({ message: error })
+    res.status(500).json({ message: error.message })
   }
 })
 
