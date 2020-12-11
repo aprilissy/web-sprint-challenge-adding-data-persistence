@@ -39,6 +39,8 @@ describe('server.js', () => {
     describe('[GET] /api/projects', () => {
       it('can get all projects that exist in the table', async () => {
         const res = await request(server).get('/api/projects')
+        console.log('res.body test',res.body);
+        
         expect(res.body).toHaveLength(2)
       }, 500)
       it('each project contains name, description and completed (as a boolean)', async () => {
