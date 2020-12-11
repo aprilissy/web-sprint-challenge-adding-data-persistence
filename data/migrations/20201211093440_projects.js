@@ -16,7 +16,7 @@ exports.up = function(knex) {
       table.increments('task_id')
       table.string('task_description', 128).notNullable()
       table.string('task_notes', 128)
-      table.boolean('task_completed').notNullable().defaultTo(0)
+      table.boolean('task_completed').defaultTo(0) // removed .notNullable()
       table.integer('project_id').unsigned().references('project_id').inTable('projects').onDelete('RESTRICT').onUpdate('RESTRICT')
     })
     .createTable('task_resources', table => {
