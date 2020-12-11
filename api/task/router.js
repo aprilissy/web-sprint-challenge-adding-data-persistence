@@ -6,6 +6,7 @@ const router = express.Router();
 
 router.post('/', validateTask, async (req, res) => {
   try {
+    console.log("ROUTER: ", req.body)
     req.body.completed = !!req.body.completed
     const newTask = await Tasks.addTask(req.body)
     res.status(201).json(newTask)
@@ -15,8 +16,9 @@ router.post('/', validateTask, async (req, res) => {
 })
 
 router.get('/', async (req, res) => {
-  try {    
+  try {
     const tasks = await Tasks.getAllTasks()
+    console.log("TASKS: ", tasks)
     tasks.forEach(tsk => {
       tsk.completed = !!tsk.completed
     })   

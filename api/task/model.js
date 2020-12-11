@@ -5,9 +5,10 @@ module.exports = {
   addTask
 }
 
-function getAllTasks() {
+async function getAllTasks() {
+  console.log("TSKS", await db('tasks'))
   return db('tasks as t')
-    .join('projects as p', 't.id', 'p.id')
+    .join('projects as p', 't.project_id', 'p.id')
     .select('p.name', 'p.description', 't.description', 't.notes', 't.completed')
 }
 

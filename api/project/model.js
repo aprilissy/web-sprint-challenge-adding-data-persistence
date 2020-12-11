@@ -9,7 +9,7 @@ function getAllProjects() {
   return db('projects')
 }
 
-function addProject(project) {  
+function addProject(project) {
   return db('projects')
     .insert(project, 'id')
     .then(ids => ({ id: ids[0], ...project}))
