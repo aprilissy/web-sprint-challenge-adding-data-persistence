@@ -7,8 +7,9 @@ const router = express.Router();
 router.get('/', async (req, res) => {
   try {    
     const projects = await Projects.getAllProjects()
-    console.log('projects', projects);
-    
+    projects.forEach(prj => {
+      prj.completed = !!prj.completed
+    })    
     res.status(200).json(projects)
   } catch (error) {
     res.status(500).json({ message: error.message })
@@ -17,6 +18,7 @@ router.get('/', async (req, res) => {
 
 router.post('/', validateProject, async (req, res) => {
   try {
+    req.body.completed = !!req.body.completed
     const newProject = await Projects.addProject(req.body)
     res.status(201).json(newProject)
   } catch (error) {

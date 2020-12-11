@@ -1,10 +1,10 @@
 const validateProject = async (req, res, next) => {
   if(!req.body) {
     res.status(400).json({ message: 'missing project data '})
-  } else if (!req.body.project_name) {
-    res.status(400).json({ message: 'missing required project_name field'})
-  } else if (!req.body.project_completed) {
-    res.status(400).json({ message: 'missing required project_completed field'})
+  } else if (!req.body.name) {
+    res.status(400).json({ message: 'missing required name field'})
+  } else if (req.body.completed === undefined) {
+    res.status(400).json({ message: 'missing required completed field'})
   } else {
     next()
   }
@@ -12,8 +12,8 @@ const validateProject = async (req, res, next) => {
 const validateResource = async (req, res, next) => {
   if(!req.body) {
     res.status(400).json({ message: 'missing resource data '})
-  } else if (!req.body.resource_name) {
-    res.status(400).json({ message: 'missing required resource_name field'})
+  } else if (!req.body.name) {
+    res.status(400).json({ message: 'missing required name field'})
   } else {
     next()
   }
@@ -21,12 +21,12 @@ const validateResource = async (req, res, next) => {
 const validateTask = async (req, res, next) => {
   if(!req.body) {
     res.status(400).json({ message: 'missing task data '})
-  } else if (!req.body.task_description) {
-    res.status(400).json({ message: 'missing required task_description'})
-  // }  else if (!req.body.task_completed) {
-  //   res.status(400).json({ message: 'missing required task_completed'})
-  } else if (!req.body.project_id) {
-    res.status(400).json({ message: 'missing required project_id'})
+  } else if (!req.body.description) {
+    res.status(400).json({ message: 'missing required description'})
+  }  else if (req.body.completed === undefined) {
+    res.status(400).json({ message: 'missing required completed'})
+  } else if (!req.body.id) {
+    res.status(400).json({ message: 'missing required id'})
   } else {
     next()
   }

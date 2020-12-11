@@ -7,8 +7,8 @@ module.exports = {
 
 function getAllTasks() {
   return db('tasks as t')
-    .join('projects as p', 't.project_id', 'p.project_id')
-    .select('p.project_name', 'p.project_description', 't.task_description', 't.task_notes', 't.task_completed')
+    .join('projects as p', 't.id', 'p.id')
+    .select('p.name', 'p.description', 't.description', 't.notes', 't.completed')
 }
 
 function addTask(task) {
@@ -18,11 +18,11 @@ function addTask(task) {
 }
 
 // select
-//   p.project_name,
-//   p.project_description,
-//   t.task_description,
-//   t.task_notes,
-//   t.task_completed
+//   p.name,
+//   p.description,
+//   t.description,
+//   t.notes,
+//   t.completed
 // from tasks as t
 // join projects as p
-//     on t.project_id = p.project_id;
+//     on t.id = p.id;
