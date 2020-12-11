@@ -17,12 +17,12 @@ exports.up = function(knex) {
       table.string('task_description', 128).notNullable()
       table.string('task_notes', 128)
       table.boolean('task_completed').notNullable().defaultTo(0)
+      table.integer('project_id').unsigned().references('project_id').inTable('projects').onDelete('RESTRICT').onUpdate('RESTRICT')
     })
     .createTable('task_resources', table => {
       table.increments('task_resource_id')
       table.integer('resource_id').unsigned().references('resource_id').inTable('resources').onDelete('RESTRICT').onUpdate('RESTRICT')
       table.integer('task_id').unsigned().references('task_id').inTable('tasks').onDelete('RESTRICT').onUpdate('RESTRICT')
-
     })
 };
 
