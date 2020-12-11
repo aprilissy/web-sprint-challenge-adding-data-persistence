@@ -6,8 +6,8 @@ const Resources = require('./resource/router');
 const Tasks = require('./task/router');
 
 server.use(express.json());
-server.use('api/project', Projects);
-server.use('api/resource', Resources);
-server.use('api/task', Tasks);
+server.use('/api/projects', Projects);
+server.use('/api/resources', Resources);
+server.use('/api/tasks', Tasks);
 
 module.exports = server;
